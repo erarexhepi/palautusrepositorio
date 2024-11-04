@@ -2,7 +2,7 @@ from urllib import request
 from player import Player
 
 class PlayerReader:
-    def _init_(self,url):
+    def __init__(self,url):
         self._url = url
 
     def get_players(self):

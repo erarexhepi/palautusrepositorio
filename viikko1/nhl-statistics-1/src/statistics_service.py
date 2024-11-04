@@ -3,7 +3,7 @@ from player_reader import PlayerReader
 
 
 class StatisticsService:
-    def _init_(self, url):
+    def __init__(self, url):
         reader = PlayerReader(url)
 
         self._players = reader.get_players()
