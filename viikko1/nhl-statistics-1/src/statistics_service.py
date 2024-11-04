@@ -3,8 +3,8 @@ from player_reader import PlayerReader
 
 
 class StatisticsService:
-    def __init__(self):
-        reader = PlayerReader()
+    def _init_(self, url):
+        reader = PlayerReader(url)
 
         self._players = reader.get_players()
 
@@ -24,7 +24,7 @@ class StatisticsService:
         return list(players_of_team)
 
     def top(self, how_many):
-        # metodin käyttämä apufufunktio voidaan määritellä näin
+        # metodin käyttämä apufufunktio  voidaan määritellä näin
         def sort_by_points(player):
             return player.points
 
@@ -36,7 +36,7 @@ class StatisticsService:
 
         result = []
         i = 0
-        while i <= how_many:
+        while i < how_many:
             result.append(sorted_players[i])
             i += 1
 
