@@ -4,11 +4,12 @@ from logger import logger
 from summa import summa
 from erotus import erotus
 
-logger("aloitetaan ohjelma") # muutos mainissa
+logger("aloitetaan ohjelma")  # yhdistetty muutos
 
 x = int(input("luku 1: "))
 y = int(input("luku 2: "))
-print(f"{summa(x, y)}")
-print(f"{erotus(x, y)}")
+print(f"{x} + {y} = {summa(x, y)}")  # muutos mainissa
+print(f"{x} - {y} = {erotus(x, y)}")  # muutos mainissa
 
 logger("lopetetaan ohjelma")
+print("goodbye!")
