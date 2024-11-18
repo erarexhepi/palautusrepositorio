@@ -42,5 +42,19 @@ class UserService:
 
         # toteuta loput tarkastukset tänne ja nosta virhe virhetilanteissa
 
+    def validate(self, username, password, password_confirmation):
+        if not username.islower() or len(username) < 3:
+            raise Exception("Username must be at least 3 characters long and contain only lowercase letters")
+
+        if not password or len(password) < 8:
+            raise Exception("Password must be at least 8 characters long")
+
+        if password.isalpha():
+            raise Exception("Password must include at least one number or special character")
+
+        if password != password_confirmation:
+            raise Exception("Passwords do not match")
+
+
 
 user_service = UserService()

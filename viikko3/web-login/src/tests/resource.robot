@@ -30,7 +30,8 @@ Login Page Should Be Open
     Title Should Be  Login
 
 Main Page Should Be Open
-    Title Should Be  Ohtu Application main page
+    Title Should Be  Welcome to Ohtu Application!
+    Page Should Contain Element    link=Logout
 
 Go To Login Page
     Go To  ${LOGIN_URL}
@@ -38,7 +39,12 @@ Go To Login Page
 Go To Starting Page
     Go To  ${HOME_URL}
 
+Go To Register Page
+    Go To  ${REGISTER_URL}
+
 Register Page Should Be Open
     Title Should Be  Register
 
-
+Reset Application Create User And Go To Register Page
+    Reset Application
+    Go To Register Page
