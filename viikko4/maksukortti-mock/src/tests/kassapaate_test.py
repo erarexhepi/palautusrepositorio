@@ -29,4 +29,11 @@ class TestKassapaate(unittest.TestCase):
         self.kassa.lataa(maksukortti_mock, 10)
 
         maksukortti_mock.lataa.assert_called_with(10)
+    def test_lataa_ei_kutsu_kortin_lataa_metodia_jos_summa_negatiivinen(self):
+        maksukortti_mock = Mock()
+
+        self.kassa.lataa(maksukortti_mock, -5)
+
+        maksukortti_mock.lataa.assert_not_called()
+
 
