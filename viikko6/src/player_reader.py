@@ -1,7 +1,6 @@
 from urllib import request
 from player import Player
 
-
 class PlayerReader:
     def __init__(self, url):
         self._url = url
@@ -21,7 +20,5 @@ class PlayerReader:
                     int(parts[3].strip()),
                     int(parts[4].strip())
                 )
-
                 players.append(player)
-
         return players

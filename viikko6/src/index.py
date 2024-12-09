@@ -1,29 +1,33 @@
 from statistics import Statistics
 from player_reader import PlayerReader
-from matchers import And, Or, HasAtLeast, PlaysIn
+from query_builder import QueryBuilder
 
 def main():
     url = "https://studies.cs.helsinki.fi/nhlstats/2023-24/players.txt"
     reader = PlayerReader(url)
     stats = Statistics(reader)
 
-    print("Pelaajat, joilla on vähintään 45 maalia tai 70 syöttöä:")
-    matcher = Or(
-        HasAtLeast(45, "goals"),
-        HasAtLeast(70, "assists")
+    query1 = QueryBuilder()
+    m1 = (
+        query1
+        .plays_in("PHI")
+        .has_at_least(10, "assists")
+        .has_fewer_than(10, "goals")
+        .build()
     )
-    for player in stats.matches(matcher):
-        print(player)
 
-    print("\nPelaajat, joilla on vähintään 70 pistettä ja jotka pelaavat NYR-, FLA- tai BOS-joukkueissa:")
-    matcher = And(
-        HasAtLeast(70, "points"),
-        Or(
-            PlaysIn("NYR"),
-            PlaysIn("FLA"),
-            PlaysIn("BOS")
-        )
+    query2 = QueryBuilder()
+    m2 = (
+        query2
+        .plays_in("EDM")
+        .has_at_least(50, "points")
+        .build()
     )
+
+    query3 = QueryBuilder()
+    matcher = query3.one_of(m1, m2).build()
+
+    print("Pelaajat, jotka täyttävät ehdon:")
     for player in stats.matches(matcher):
         print(player)
 
